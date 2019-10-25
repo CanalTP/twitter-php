@@ -342,7 +342,9 @@ class Twitter
 			throw new TwitterException(isset($payload->errors[0]->message)
 				? $payload->errors[0]->message
 				: "Server error #$code with answer $result",
-				$code
+				isset($payload->errors[0]->code)
+				? $payload->errors[0]->code
+				: $code
 			);
 		}
 
